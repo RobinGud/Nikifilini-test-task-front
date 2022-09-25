@@ -70,12 +70,22 @@ export default class OrdersListState {
 
   async loadOrders() {
     this.loading = true;
-    this.loading = false;
+    client
+      .query(GET_ORDERS_QUERY, { page: this.page })
+      .toPromise()
+      .then(res => {
+        this.setOrders(res.data.getOrders.orders)
+        this.setTotalPages(res.data.getOrders.pagination.totalPageCount)
+        this.loading = false;
+      })
   }
 
   initialize() {
     if (this.initialized) return;
     this.initialized = true;
+    const url = new URL(window.location.href);
+    let page = Number(url.searchParams.get('page')) || 1;
+    this.setPage(page);
     this.loadOrders();
   }
 }

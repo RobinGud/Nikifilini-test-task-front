@@ -17,7 +17,7 @@ const findIndexAndRules = (rulesSource, ruleMatcher) => {
 }
 
 const findRule = (rulesSource, ruleMatcher) => {
-    const {index, rules} = findIndexAndRules(rulesSource, ruleMatcher)
+    const { index, rules } = findIndexAndRules(rulesSource, ruleMatcher)
     return rules[index]
 }
 
@@ -29,17 +29,17 @@ const postcssLoaderMatcher = createLoaderMatcher('postcss-loader')
 const fileLoaderMatcher = createLoaderMatcher('file-loader')
 
 const addAfterRule = (rulesSource, ruleMatcher, value) => {
-    const {index, rules} = findIndexAndRules(rulesSource, ruleMatcher)
+    const { index, rules } = findIndexAndRules(rulesSource, ruleMatcher)
     rules.splice(index + 1, 0, value)
 }
 
 const removeRule = (rulesSource, ruleMatcher) => {
-    const {index, rules} = findIndexAndRules(rulesSource, ruleMatcher)
+    const { index, rules } = findIndexAndRules(rulesSource, ruleMatcher)
     rules.splice(index, 1)
 }
 
 const addBeforeRule = (rulesSource, ruleMatcher, value) => {
-    const {index, rules} = findIndexAndRules(rulesSource, ruleMatcher)
+    const { index, rules } = findIndexAndRules(rulesSource, ruleMatcher)
     rules.splice(index, 0, value)
 }
 
@@ -53,7 +53,7 @@ module.exports = function (config, env) {
 
     cssRule.exclude = /\.module\.css$/
     const cssModulesRuleCssLoader = findRule(cssModulesRule, cssLoaderMatcher)
-    cssModulesRuleCssLoader.options = Object.assign({modules: true}, cssModulesRuleCssLoader.options)
+    cssModulesRuleCssLoader.options = Object.assign({ modules: true }, cssModulesRuleCssLoader.options)
     addBeforeRule(config.module.rules, fileLoaderMatcher, cssModulesRule)
 
     stylRule.test = /\.styl$/

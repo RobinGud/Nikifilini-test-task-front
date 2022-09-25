@@ -14,7 +14,7 @@ const ListItem = observer(
     return (
       <div className={styles.row}>
         <div className={styles.orderNumber}>
-          <Link to={`/orders/${order.id}`}>{order.number}</Link>
+          <Link to={`/orders/${order.number}`}>{order.number}</Link>
         </div>
         <div>{moment(order.createdAt).format("DD.MM.YYYY HH:mm")}</div>
         <div title={order.delivery?.code}>
